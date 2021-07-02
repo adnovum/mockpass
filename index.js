@@ -13,7 +13,7 @@ const serviceProvider = {
   cert: fs.readFileSync(
     path.resolve(
       __dirname,
-      process.env.SERVICE_PROVIDER_CERT_PATH || './static/certs/server.crt',
+      process.env.SERVICE_PROVIDER_CERT_PATH || './static/certs/client_eckey.json',
     ),
   ),
   pubKey: fs.readFileSync(
@@ -52,7 +52,7 @@ configMyInfo.v3(app, options)
 app.enable('trust proxy')
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(PORT, (err) =>
+app.listen(PORT, '0.0.0.0', (err) =>
   err
     ? console.error('Unable to start MockPass', err)
     : console.warn(`MockPass listening on ${PORT}`),

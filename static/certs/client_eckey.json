@@ -1,0 +1,9 @@
+{
+  "kty": "EC",
+  "use": "enc",
+  "crv": "P-384",
+  "kid": "spOidcEncInt-ZUMUrUHKuJIVVMLm5TG88iUQaXanlYO4Z8E5JFIxGhE",
+  "x": "dIWek5PY2kzFXWHX-QYSOh96CPOslV21FIshGQ1f1cKIwXXRZVamc6VcaIdRt9oe",
+  "y": "younezCUfstOUf-e91xwTEJ_k99vTmMnAxtitM0n9fwP-_IoBtmgh0NqVXzJW1ib",
+  "alg": "ECDH-ES+A128KW"
+}
