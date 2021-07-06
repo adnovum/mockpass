@@ -42,6 +42,18 @@ const options = {
 
 const app = express()
 app.use(morgan('combined'))
+app.use((...args) => {
+  // since UTF-8 and ISO-8859-1 are ASCII-backward-compatible + the assumption that request body
+  // doesn't contain non-ASCII character --> we just need to change ISO-8859-1 to UTF-8 without
+  // performing addition encoding conversion
+  if (args[0].headers['content-type']?.includes('charset=ISO-8859-1')) {
+    args[0].headers['content-type'] = args[0].headers['content-type'].replace(
+      'charset=ISO-8859-1',
+      'charset=UTF-8',
+    )
+  }
+  return express.urlencoded({ extended: false })(...args)
+})
 
 configOIDC(app, options)
 configSGID(app, options)
