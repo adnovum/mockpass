@@ -13,7 +13,8 @@ const serviceProvider = {
   cert: fs.readFileSync(
     path.resolve(
       __dirname,
-      process.env.SERVICE_PROVIDER_CERT_PATH || './static/certs/client_eckey.json',
+      process.env.SERVICE_PROVIDER_CERT_PATH ||
+        './static/certs/client_eckey.json',
     ),
   ),
   pubKey: fs.readFileSync(
@@ -45,7 +46,7 @@ app.use(morgan('combined'))
 app.use((...args) => {
   // since UTF-8 and ISO-8859-1 are ASCII-backward-compatible + the assumption that request body
   // doesn't contain non-ASCII character --> we just need to change ISO-8859-1 to UTF-8 without
-  // performing addition encoding conversion
+  // performing additional encoding conversion
   if (args[0].headers['content-type']?.includes('charset=ISO-8859-1')) {
     args[0].headers['content-type'] = args[0].headers['content-type'].replace(
       'charset=ISO-8859-1',
